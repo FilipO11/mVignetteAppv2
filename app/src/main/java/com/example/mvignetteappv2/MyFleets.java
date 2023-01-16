@@ -36,7 +36,7 @@ public class MyFleets extends Fragment {
     protected RecyclerView.LayoutManager mLayoutManager;
     private RequestQueue requestQueue;
     //String url = String.format("https://mvignette.azurewebsites.net/api/v1/Fleet?user=%s", user);
-    private String url = "https://mvignette.azurewebsites.net/api/v1/Fleet?user=Bob";
+    private String url = "https://mvignette.azurewebsites.net/api/v1/Fleet?user=" + user;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -91,7 +91,7 @@ public class MyFleets extends Fragment {
         ArrayList<FleetModel> fleets = new ArrayList<>();
         for (int i = 0; i < response.length(); i++){
             try {
-                JSONObject object =response.getJSONObject(i);
+                JSONObject object = response.getJSONObject(i);
                 fleets.add(new FleetModel(object.getString("id"), object.getString("name")));
             } catch (JSONException e){
                 e.printStackTrace();
@@ -100,7 +100,7 @@ public class MyFleets extends Fragment {
             }
         }
         Log.d("REST event", "parsed data: " + fleets.size());
-        mAdapter = new FleetAdapter(getContext(), fleets);
+        mAdapter = new FleetAdapter(getContext(), fleets, MyFleets.this);
         mRecyclerView.setAdapter(mAdapter);
     };
 
