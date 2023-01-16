@@ -18,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.mvignetteappv2.databinding.FragmentFirstBinding;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -68,17 +69,13 @@ public class MyFleets extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        /*
-        binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
+        binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(MyFleets.this)
                         .navigate(R.id.action_FirstFragment_to_SecondFragment);
             }
         });
-
-         */
     }
 
     @Override
