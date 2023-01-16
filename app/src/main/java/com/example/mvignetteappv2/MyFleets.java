@@ -29,12 +29,14 @@ import java.util.Objects;
 
 public class MyFleets extends Fragment {
 
+    private String user = "Bob";
     private FragmentFirstBinding binding;
     protected RecyclerView mRecyclerView;
     protected FleetAdapter mAdapter;
     protected RecyclerView.LayoutManager mLayoutManager;
     private RequestQueue requestQueue;
-    String url = "https://mvignette.azurewebsites.net/api/v1/Fleet?user=bob";
+    //String url = String.format("https://mvignette.azurewebsites.net/api/v1/Fleet?user=%s", user);
+    private String url = "https://mvignette.azurewebsites.net/api/v1/Fleet?user=Bob";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
