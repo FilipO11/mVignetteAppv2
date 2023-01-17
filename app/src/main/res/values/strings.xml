@@ -18,4 +18,6 @@
     <string name="add_vehicle_label">Add new vehicle</string>
     <string name="field_vehicle_regplate">(registration plate)</string>
     <string name="vehicle_details_label">Vehicle</string>
+    <string name="button_buy_text">BUY VIGNETTE</string>
+    <string name="vignette_valid_until">Vignette valid until </string>
 </resources>

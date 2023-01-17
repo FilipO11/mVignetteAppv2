@@ -1,5 +1,6 @@
 package com.example.mvignetteappv2;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
@@ -87,25 +90,59 @@ public class VehicleDetails extends Fragment {
 
     private final Response.Listener<JSONObject> jsonObjectListener = response -> {
         Log.d("REST event", "got response: " + response.length());
+        View rootView = binding.getRoot();
         String vehicleName;
         String vehicleRegPlate;
         String vehicleType;
+        JSONObject vignette = null;
         try {
             vehicleName = response.getString("name");
             vehicleRegPlate = response.getString("regPlate");
             vehicleType = response.getString("type");
+            try {
+                vignette = response.getJSONObject("vignette");
+            } catch (JSONException ignored) {}
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
         //Log.d("REST event", "parsed data: " + vehicles.size());
-        TextView title =  binding.getRoot().findViewById(R.id.idTVVehicleTitle);
+        TextView title =  rootView.findViewById(R.id.idTVVehicleTitle);
         title.setText(vehicleName);
 
-        TextView regPlate =  binding.getRoot().findViewById(R.id.idTVVehicleRegPlate);
+        TextView regPlate =  rootView.findViewById(R.id.idTVVehicleRegPlate);
         regPlate.setText(vehicleRegPlate);
 
-        TextView type =  binding.getRoot().findViewById(R.id.idTVVehicleType);
+        TextView type =  rootView.findViewById(R.id.idTVVehicleType);
         type.setText(vehicleType);
+
+        if (vignette == null) {
+            Button buyV = (Button) LayoutInflater.from(getContext()).inflate(R.layout.button_buy, binding.getRoot(), false);
+
+            buyV.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.i("EVENT", "BUY button clicked");
+                    /*
+                    FleetDetailsDirections.AddVehicle action = FleetDetailsDirections.addVehicle(fleetId);
+                    NavHostFragment.findNavController(VehicleDetails.this)
+                            .navigate(action);
+
+                     */
+
+                }
+            });
+
+            binding.getRoot().addView(buyV);
+        } else {
+            TextView vignetteInfo = (TextView) LayoutInflater.from(getContext()).inflate(R.layout.vignette_info, binding.getRoot(), false);
+            try {
+                String text = getString(R.string.vignette_valid_until) + vignette.getString("expireDate").substring(0, 10);
+                vignetteInfo.setText(text);
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
+            }
+            binding.getRoot().addView(vignetteInfo);
+        }
     };
 
     private final Response.ErrorListener errorListener = error -> Log.d("REST error", error.getMessage());
