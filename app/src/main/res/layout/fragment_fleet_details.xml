@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="60dp"
-        android:text="@string/fleet_name"
+        android:text="@string/details_placeholder"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"

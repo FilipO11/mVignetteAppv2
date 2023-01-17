@@ -43,6 +43,9 @@
         <action
             android:id="@+id/add_Vehicle"
             app:destination="@id/AddVehicle" />
+        <action
+            android:id="@+id/viewVehicleDetails"
+            app:destination="@id/VehicleDetails" />
     </fragment>
     <fragment
         android:id="@+id/AddVehicle"
@@ -55,6 +58,19 @@
             app:destination="@id/FleetDetails" />
         <argument
             android:name="FleetID"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/VehicleDetails"
+        android:name="com.example.mvignetteappv2.VehicleDetails"
+        android:label="@string/vehicle_details_label"
+        tools:layout="@layout/fragment_vehicle_details">
+
+        <action
+            android:id="@+id/action_Back_to_Fleet"
+            app:destination="@id/FleetDetails" />
+        <argument
+            android:name="VehicleID"
             app:argType="string" />
     </fragment>
 </navigation>

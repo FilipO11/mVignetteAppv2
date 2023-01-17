@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 
+import com.example.mvignetteappv2.FleetDetailsDirections;
+
 import java.util.ArrayList;
 
 public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.ViewHolder> {
@@ -39,11 +41,11 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.ViewHold
                 String vehicleId = view.getTag().toString();
                 Log.i("EVENT", "card clicked: " + vehicleId);
                 /*
-                MyVehiclesDirections.ViewVehicleDetails action = MyVehiclesDirections.viewVehicleDetails(vehicleId);
+                 */
+                FleetDetailsDirections.ViewVehicleDetails action = FleetDetailsDirections.viewVehicleDetails(vehicleId);
                 NavHostFragment.findNavController(fragment)
                         .navigate(action);
 
-                 */
             }
 
         });
