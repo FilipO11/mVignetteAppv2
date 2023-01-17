@@ -9,7 +9,7 @@ mVignette is an app that helps users track and manage their vehicles' highway vi
 Users can register their vehicles of all supported types, purchase vignettes 
 for them, see the vignettes' status, organize vehicles into fleets and share fleets with other users (family, coworkers, ...).
 
-The source code to the app is published on GitHub: [mVignette on GitHub](https://github.com/FilipO11/mVignetteAppv2)
+The app's source code is published on GitHub: [mVignette on GitHub](https://github.com/FilipO11/mVignetteAppv2)
 
 The application uses the REST API to communicate with the mVignette database, hosted on Azure. Using the API it can manipulate data as
 described in the Swagger documentation found here:
