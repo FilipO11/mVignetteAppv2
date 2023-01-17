@@ -12,6 +12,6 @@
     <string name="fleet_name">myfleet</string>
     <string name="button_add_text">Add new</string>
     <string name="field_fleet_name">(fleet name)</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="fleet_details_label">Details of fleet X</string>
+    <string name="fleet_details_label">Fleet</string>
+    <string name="vehicle_name">myvehicle</string>
 </resources>

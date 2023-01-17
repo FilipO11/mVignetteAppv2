@@ -13,32 +13,35 @@ import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
 
-public class FleetAdapter extends RecyclerView.Adapter<FleetAdapter.ViewHolder> {
+public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.ViewHolder> {
 
     private final Context context;
-    private final ArrayList<FleetModel> fleetModelArrayList;
+    private final ArrayList<VehicleModel> vehicleModelArrayList;
     private final Fragment fragment;
 
     // Constructor
-    public FleetAdapter(Context context, ArrayList<FleetModel> fleetModelArrayList, Fragment fragment) {
+    public VehicleAdapter(Context context, ArrayList<VehicleModel> vehicleModelArrayList, Fragment fragment) {
         this.context = context;
-        this.fleetModelArrayList = fleetModelArrayList;
+        this.vehicleModelArrayList = vehicleModelArrayList;
         this.fragment = fragment;
     }
 
     @NonNull
     @Override
-    public FleetAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public VehicleAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // to inflate the layout for each item of recycler view.
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_fleet, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_vehicle, parent, false);
         view.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                String fleetId = view.getTag().toString();
-                Log.i("EVENT", "card clicked: " + fleetId);
-                MyFleetsDirections.ViewFleetDetails action = MyFleetsDirections.viewFleetDetails(fleetId);
+                String vehicleId = view.getTag().toString();
+                Log.i("EVENT", "card clicked: " + vehicleId);
+                /*
+                MyVehiclesDirections.ViewVehicleDetails action = MyVehiclesDirections.viewVehicleDetails(vehicleId);
                 NavHostFragment.findNavController(fragment)
                         .navigate(action);
+
+                 */
             }
 
         });
@@ -46,26 +49,26 @@ public class FleetAdapter extends RecyclerView.Adapter<FleetAdapter.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FleetAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull VehicleAdapter.ViewHolder holder, int position) {
         // to set data to textview and imageview of each card layout
-        FleetModel model = fleetModelArrayList.get(position);
-        holder.itemView.setTag(model.getFleet_id());
-        holder.fleetNameTV.setText(model.getFleet_name());
+        VehicleModel model = vehicleModelArrayList.get(position);
+        holder.itemView.setTag(model.getVehicle_id());
+        holder.vehicleNameTV.setText(model.getVehicle_name());
     }
 
     @Override
     public int getItemCount() {
         // this method is used for showing number of card items in recycler view
-        return fleetModelArrayList.size();
+        return vehicleModelArrayList.size();
     }
 
     // View holder class for initializing of your views such as TextView and Imageview
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView fleetNameTV;
+        private final TextView vehicleNameTV;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            fleetNameTV = itemView.findViewById(R.id.idTVFleetName);
+            vehicleNameTV = itemView.findViewById(R.id.idTVVehicleName);
         }
     }
 }
