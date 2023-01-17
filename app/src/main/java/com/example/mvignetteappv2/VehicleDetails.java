@@ -23,6 +23,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.mvignetteappv2.FleetDetailsDirections;
+import com.example.mvignetteappv2.VehicleDetailsDirections;
 import com.example.mvignetteappv2.databinding.FragmentFirstBinding;
 import com.example.mvignetteappv2.databinding.FragmentFleetDetailsBinding;
 import com.example.mvignetteappv2.databinding.FragmentVehicleDetailsBinding;
@@ -123,11 +124,10 @@ public class VehicleDetails extends Fragment {
                 public void onClick(View view) {
                     Log.i("EVENT", "BUY button clicked");
                     /*
-                    FleetDetailsDirections.AddVehicle action = FleetDetailsDirections.addVehicle(fleetId);
+                     */
+                    VehicleDetailsDirections.BuyVignette action = VehicleDetailsDirections.buyVignette(vehicleId);
                     NavHostFragment.findNavController(VehicleDetails.this)
                             .navigate(action);
-
-                     */
 
                 }
             });

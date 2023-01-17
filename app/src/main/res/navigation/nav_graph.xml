@@ -72,5 +72,21 @@
         <argument
             android:name="VehicleID"
             app:argType="string" />
+        <action
+            android:id="@+id/buyVignette"
+            app:destination="@id/BuyVignette" />
+    </fragment>
+    <fragment
+        android:id="@+id/BuyVignette"
+        android:name="com.example.mvignetteappv2.BuyVignette"
+        android:label="@string/buy_vignette_label"
+        tools:layout="@layout/fragment_buy_vignette">
+
+        <action
+            android:id="@+id/action_Back_to_Vehicle"
+            app:destination="@id/VehicleDetails" />
+        <argument
+            android:name="VehicleID"
+            app:argType="string" />
     </fragment>
 </navigation>

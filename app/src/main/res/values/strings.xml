@@ -10,7 +10,7 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="details_placeholder">Loading…</string>
-    <string name="button_add_text">Add new</string>
+    <string name="button_add_text">ADD NEW</string>
     <string name="field_fleet_name">(fleet name)</string>
     <string name="fleet_details_label">Fleet</string>
     <string name="vehicle_name">myvehicle</string>
@@ -20,4 +20,6 @@
     <string name="vehicle_details_label">Vehicle</string>
     <string name="button_buy_text">BUY VIGNETTE</string>
     <string name="vignette_valid_until">Vignette valid until </string>
+    <string name="buy_vignette_label">Choose duration</string>
+    <string name="buy_info">This vignette will expire %s and will cost %s.</string>
 </resources>
