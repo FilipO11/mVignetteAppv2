@@ -1,5 +1,7 @@
 package com.example.mvignetteappv2;
 
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
@@ -50,9 +52,12 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull VehicleAdapter.ViewHolder holder, int position) {
-        // to set data to textview and imageview of each card layout
+        // to set each card layout
         VehicleModel model = vehicleModelArrayList.get(position);
         holder.itemView.setTag(model.getVehicle_id());
+        if (model.getVignette() != null) {
+            holder.card.setCardBackgroundColor(context.getColor(R.color.green));
+        }
         holder.vehicleNameTV.setText(model.getVehicle_name());
     }
 
@@ -62,12 +67,13 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.ViewHold
         return vehicleModelArrayList.size();
     }
 
-    // View holder class for initializing of your views such as TextView and Imageview
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView vehicleNameTV;
+        private final CardView card;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            card = itemView.findViewById(R.id.idCVCard);
             vehicleNameTV = itemView.findViewById(R.id.idTVVehicleName);
         }
     }

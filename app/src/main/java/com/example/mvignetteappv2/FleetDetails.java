@@ -98,6 +98,7 @@ public class FleetDetails extends Fragment {
         ArrayList<VehicleModel> vehicles = new ArrayList<>();
         String fleetName;
         JSONArray vehiclesJSON;
+        VehicleModel vehicle = new VehicleModel();
         try {
             fleetName = response.getString("name");
             vehiclesJSON = response.getJSONArray("vehicles");
@@ -109,11 +110,17 @@ public class FleetDetails extends Fragment {
         for (int i = 0; i < vehiclesJSON.length(); i++){
             try {
                 JSONObject object = vehiclesJSON.getJSONObject(i);
-                vehicles.add(new VehicleModel(object.getString("id"), object.getString("name")));
+                vehicle.setVehicle_id(object.getString("id"));
+                vehicle.setVehicle_name(object.getString("name"));
+                try {
+                    vehicle.setVignette(object.getJSONObject("vignette"));
+                } catch (JSONException ignored){}
+                vehicles.add(vehicle);
             } catch (JSONException e){
                 e.printStackTrace();
                 return;
             }
+            vehicle = new VehicleModel();
         }
         Log.d("REST event", "parsed data: " + vehicles.size());
         mAdapter = new VehicleAdapter(getContext(), vehicles, FleetDetails.this);
