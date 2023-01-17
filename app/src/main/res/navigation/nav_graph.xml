@@ -40,5 +40,21 @@
         <argument
             android:name="FleetID"
             app:argType="string" />
+        <action
+            android:id="@+id/add_Vehicle"
+            app:destination="@id/AddVehicle" />
+    </fragment>
+    <fragment
+        android:id="@+id/AddVehicle"
+        android:name="com.example.mvignetteappv2.AddVehicle"
+        android:label="@string/add_vehicle_label"
+        tools:layout="@layout/fragment_add_vehicle">
+
+        <action
+            android:id="@+id/action_Back_to_Fleet"
+            app:destination="@id/FleetDetails" />
+        <argument
+            android:name="FleetID"
+            app:argType="string" />
     </fragment>
 </navigation>

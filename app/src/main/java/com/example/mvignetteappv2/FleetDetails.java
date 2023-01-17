@@ -19,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.mvignetteappv2.FleetDetailsDirections;
 import com.example.mvignetteappv2.databinding.FragmentFirstBinding;
 import com.example.mvignetteappv2.databinding.FragmentFleetDetailsBinding;
 
@@ -31,6 +32,7 @@ import java.util.ArrayList;
 public class FleetDetails extends Fragment {
 
     private final String user = "Bob";
+    private String fleetId;
     private FragmentFleetDetailsBinding binding;
     protected RecyclerView mRecyclerView;
     protected VehicleAdapter mAdapter;
@@ -60,7 +62,7 @@ public class FleetDetails extends Fragment {
 
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        String fleetId = FleetDetailsArgs.fromBundle(getArguments()).getFleetID();
+        fleetId = FleetDetailsArgs.fromBundle(getArguments()).getFleetID();
         Log.d("ARG", fleetId);
         String url = "https://mvignette.azurewebsites.net/api/v1/Fleet/" + fleetId;
         JsonObjectRequest request = new JsonObjectRequest(url, jsonObjectListener, errorListener);
@@ -73,15 +75,16 @@ public class FleetDetails extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         /*
+         */
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                FleetDetailsDirections.AddVehicle action = FleetDetailsDirections.addVehicle(fleetId);
                 NavHostFragment.findNavController(FleetDetails.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
+                        .navigate(action);
             }
         });
 
-         */
     }
 
     @Override
@@ -98,7 +101,6 @@ public class FleetDetails extends Fragment {
         try {
             fleetName = response.getString("name");
             vehiclesJSON = response.getJSONArray("vehicles");
-            //vehiclesJSON = new JSONArray(response.get("vehicles"));
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
